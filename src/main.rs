@@ -1,7 +1,7 @@
 mod aoc;
 mod days;
 
-use aoc::{DataSource, Part};
+use aoc::Part;
 use clap::Parser;
 use dotenv;
 
@@ -12,8 +12,8 @@ struct Args {
     #[arg(short, long, default_value = "1")]
     part: Part,
 
-    #[arg(short, long, default_value = "example")]
-    data: DataSource,
+    #[arg(short, long, default_value_t = false)]
+    live: bool,
 }
 
 #[tokio::main]
@@ -22,5 +22,5 @@ async fn main() {
 
     let args = Args::parse();
     // days::run_day(1, Part::One, DataSource::Web).await;
-    days::run_day(args.day, args.part, args.data).await;
+    days::run_day(args.day, args.part, args.live).await;
 }

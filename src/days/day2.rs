@@ -9,10 +9,10 @@ const EXAMPLE_DATA: &str = "\
 1 3 6 7 9
 ";
 
-pub async fn main(part: aoc::Part, data_source: aoc::DataSource) {
-    let data = match data_source {
-        aoc::DataSource::Web => aoc::get_input(2).await,
-        aoc::DataSource::Example => EXAMPLE_DATA.to_string(),
+pub fn main(part: aoc::Part, data: aoc::Data) {
+    let data = match data {
+        aoc::Data::Web(data) => data,
+        aoc::Data::Example => EXAMPLE_DATA.to_string(),
     };
 
     let result = match part {

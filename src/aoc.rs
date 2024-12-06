@@ -63,8 +63,8 @@ impl Display for Part {
     }
 }
 
-#[derive(Debug, Clone, Copy, ValueEnum)]
-pub enum DataSource {
-    Web,
+#[derive(Debug)]
+pub enum Data {
+    Web(String),
     Example,
 }
