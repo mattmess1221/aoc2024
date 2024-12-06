@@ -10,7 +10,9 @@ async fn read_cache(day: u32) -> Option<String> {
 }
 
 async fn write_cache(day: u32, data: &str) -> Result<(), Box<dyn Error>> {
-    tokio::fs::create_dir("cache").await?;
+    if !tokio::fs::metadata("cache").await?.is_dir() {
+        tokio::fs::create_dir("cache").await?;
+    }
     tokio::fs::write(format!("cache/day{}.txt", day), data).await?;
     tokio::fs::write("cache/.gitignore", "*").await?;
     Ok(())
